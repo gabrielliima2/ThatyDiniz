@@ -4,20 +4,7 @@
   box-sizing: border-box; /*medida do tamanho da caixa, para que seja medida atravez da borda*/
 }
 
-/*configurações padrão, dark mode*/
 :root {
-  --text-color: white;
-  --bg-color: black;
-  --bg-url: url(./assets/bg-mobile.jpg);
-  --stroke-color: rgba(255, 255, 255, 0.5);
-  --surface-color: rgba(255, 255, 255, 0.1);
-  --surface-color-hover: rgba(255, 255, 255, 0.05);
-  --highlight-color: rgba(255, 255, 255, 0.2);
-  --switch-bg-url: url(./assets/moon-stars.svg);
-}
-
-/*configurações light mode*/
-.light {
   --text-color: black;
   --bg-color: white;
   --bg-url: url(./assets/bg-mobile-light.jpg);
@@ -30,7 +17,6 @@
 
 body {
   background: var(--bg-color) var(--bg-url) no-repeat top center/cover;
-  height: 98vh;
 
   /*
   background-image: url(./assets/bg-mobile.jpg);
@@ -141,7 +127,7 @@ body * {
   animation: slide-back 0.4s; /*não utilizou forwards pq a propriedade final do slide-back ja é left: 0; */
 }
 
-.light #switch button {
+:root #switch button {
   animation: slide-in 0.4s forwards;
   /*slide-in nome da animação no @keyframe;
   0.4s é o tempo da animação;
@@ -253,10 +239,6 @@ footer {
 }
 @media (min-width: 700px) {
   :root {
-    --bg-url: url(./assets/bg-desktop.jpg);
-  }
-
-  .light {
     --bg-url: url(./assets/bg-desktop-light.jpg);
   }
 }
