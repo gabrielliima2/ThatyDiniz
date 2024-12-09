@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*medida do tamanho da caixa, para que seja medida atravez da borda*/
+}
+
+/*configurações padrão, dark mode*/
+:root {
+  --text-color: white;
+  --bg-color: black;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.05);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+/*configurações light mode*/
+.light {
+  --text-color: black;
+  --bg-color: white;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+
+body {
+  background: var(--bg-color) var(--bg-url) no-repeat top center/cover;
+  height: 98vh;
+
+  /*
+  background-image: url(./assets/bg-mobile.jpg);
+
+  background-repeat: no-repeat; faz com que a imagem nao repita
+
+  background-position: top center; posiçao (x y) vertical horizontal
+
+  background-size: cover;
+  coloca a imagem na tela interia, ajustando para o tamanho da tela
+  */
+
+  /*
+  background: color image repeat position/size ...;
+  */
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  width: 100%;
+  max-width: 588px;
+  margin: auto;
+  padding: 0 24px; /*em cima e em baixo 0px e nas laterais 24px*/
+  margin-top: 10px; /* ou  padding-top: 56px;nesse caso!*/
+
+
+  /*EXEMPLOS DE COMO FUNCIONA O MARGIN
+
+  SEQUENCIA!!!
+
+  margin: auto;          margin: 1px 2px;     margin: 1px 2px 3px ;   margin: 1px 2px 3px 4PX; 
+
+  Como se fosse:
+
+  margin-top: auto;      margin-top: 1px;      margin-top: 1px;         margin-top: 1px;
+  margin-right: auto;    margin-right: 2px;    margin-right: 2px;       margin-right: 2px;
+  margin-bottom: auto;   margin-bottom: 1px;   margin-bottom: 3px;       margin-bottom: 3px;
+  margin-left: auto;     margin-left: 2px;     margin-left: 2px;        margin-left: 4px;
+
+  */
+}
+
+/*profile*/
+#profile {
+  text-align: center; /*para alinhar a img pois ela é display in line*/
+}
+
+#profile svg {
+  width: 150px;
+
+}
+
+#profile h1 {
+  font-family: "Hello Paris Serif Regular";
+  font-weight: 500;
+  font-size: 4rem;
+  color: #502b4d;
+  background: linear-gradient(to right, #502b4d, #8d5b89); /* Gradiente da esquerda para a direita */
+  -webkit-background-clip: text; /* Recorta o gradiente ao texto */
+  -webkit-text-fill-color: transparent;
+}
+
+#profile p {
+  Font-family: "PT Sans", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  margin-bottom: 25px;
+  color: #502b4d;
+  background: linear-gradient(to right, #502b4d, #8d5b89); /* Gradiente da esquerda para a direita */
+  -webkit-background-clip: text; /* Recorta o gradiente ao texto */
+  -webkit-text-fill-color: transparent;
+}
+
+.pStyles{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+
+
+/*switch*/
+#switch {
+  width: 64px;
+  position: relative; /* faz com que o position:absolute; fique absoluto dentro do switch apenas e nao na tela inteira*/
+
+  margin: 0 auto;
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+
+  /*explicação no video: masterizando alinhamento*/
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  transform: translateY(-50%);
+  top: 50%;
+
+  animation: slide-back 0.4s; /*não utilizou forwards pq a propriedade final do slide-back ja é left: 0; */
+}
+
+.light #switch button {
+  animation: slide-in 0.4s forwards;
+  /*slide-in nome da animação no @keyframe;
+  0.4s é o tempo da animação;
+  forwards é para quando chegar no final da animação,manter as propriedades finais do slide-in.*/
+
+  /*right: 0;
+  left: initial; /*faz mudar o lado do icone*/
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* links */
+ul {
+  list-style: none; /*tira op . da lista */
+
+  display: flex; /*organisa de uma forma flexivel*/
+  flex-direction: column; /*Deixa os elementos em coluna*/
+  gap: 16px; /*expaço entre os elementos, que nesse caso são as listas*/
+
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  justify-content: center; /*Pegou o conteudo e coloca no meio. so funciona no flex, no display: block; é text-align: center;*/
+
+  padding: 16px 24px;
+
+  /*
+  (red, green, blue, alpha)'transparencia'
+   255 cor mais forte (branco)0 cor mais fraca(preto)
+  */
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(
+    4px
+  ); /*-webkit- em alguns browsers precisam, como saber se precisa? pesquisa no site caniuse.com*/
+
+  text-decoration: none;
+  font-weight: 500;
+
+  transition: background 0.2s; /*transiçao da cor do back ground, ligado com o hover*/
+}
+
+/*pseudo-selector, quando o mouse passar por cima*/
+ul li a:hover {
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+/*social links*/
+#social-links {
+  display: flex;
+  justify-content: center;
+
+  padding: 24px 0;
+
+  font-size: 24px;
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*tudo isso para deixar o icone no centro */
+  padding: 16px;
+
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+
+#social-links a:hover {
+  background-color: var(--highlight-color);
+  padding: 16px;
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.hide{
+  display: none;
+}
+/* Media queries */
+@media (min-width: 500px) {
+  .pStyles{
+  display: flex;
+  justify-content: end;
+  width: 80%;
+  }
+}
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/* animation */
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
